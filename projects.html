@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JMM Surface Coating | Projects Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Filter Buttons */
+        .filter-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--secondary-color);
+            color: var(--text-color);
+            padding: 8px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Gallery Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 300px;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Hover Overlay */
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(10, 46, 82, 0.9), transparent);
+            padding: 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .project-item:hover .project-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-overlay h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .project-overlay p {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .project-overlay .location {
+            color: #ccc;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* Animation for filtering */
+        .project-item.hide {
+            display: none;
+        }
+
+        .project-item.show {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="container flex-between">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +91 98765 43210</span>
+                <span><i class="fas fa-envelope"></i> info@jmmsurface.com</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Jmm_logo.png" alt="JMM Surface Coating Logo" class="logo-img">
+                    <h1>JMM <span>Surface Coating</span></h1>
+                </a>
+            </div>
+
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="paints.html" class="nav-link">Paints Production</a></li>
+                    <li class="dropdown">
+                        <a href="" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="services.html#infrastructure"><i class="fas fa-city"></i> Infrastructure
+                                Projects</a>
+                            <a href="services.html#corporate"><i class="fas fa-building"></i> Corporate Facility
+                                Services</a>
+                            <a href="services.html#trading"><i class="fas fa-handshake"></i> Trading & Consulting</a>
+                            <a href="services.html#manpower"><i class="fas fa-users"></i> Skilled Manpower Supply</a>
+                            <a href="services.html#training"><i class="fas fa-graduation-cap"></i> Training &
+                                Development</a>
+                            <a href="services.html#surface-prep"><i class="fas fa-tools"></i> Surface Preparation</a>
+                            <a href="services.html#paint-application"><i class="fas fa-paint-roller"></i> Paint
+                                Application</a>
+                            <a href="services.html#turnkey-coating"><i class="fas fa-industry"></i> Turnkey Coating
+                                Solutions</a>
+                            <a href="services.html#quality-monitoring"><i class="fas fa-clipboard-check"></i> Quality
+                                Monitoring</a>
+                            <a href="services.html#consultant-coordination"><i class="fas fa-user-tie"></i> Consultant
+                                Coordination</a>
+                        </div>
+
+                    </li>
+
+                    <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                    <li><a href="contact.html" class="btn-nav">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="hamburger" id="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="page-header"
+        style="background-image: url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+        <div class="overlay"></div>
+        <div class="container text-center content">
+            <h1 class="fade-in-up">Our Portfolio</h1>
+            <p class="breadcrumb fade-in-up delay-1">A Showcase of Excellence in Infra & Coating</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+
+            <div class="filter-menu fade-in-up">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="infra">Infrastructure</button>
+                <button class="filter-btn" data-filter="painting">Painting</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+            </div>
+
+            <div class="portfolio-grid">
+
+                <div class="project-item infra show">
+                    <img src="https://images.unsplash.com/photo-1590486803833-1c5dc8ce84ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Highway Project">
+                    <div class="project-overlay">
+                        <h3>National Highway Repair</h3>
+                        <p>Infrastructure</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra</span>
+                    </div>
+                </div>
+
+                <div class="project-item painting show">
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Luxury Villa">
+                    <div class="project-overlay">
+                        <h3>Luxury Villa Coating</h3>
+                        <p>Exterior Painting</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Alibaug, Maharashtra</span>
+                    </div>
+                </div>
+
+                <div class="project-item industrial show">
+                    <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Factory Floor">
+                    <div class="project-overlay">
+                        <h3>Automobile Plant Flooring</h3>
+                        <p>Industrial Epoxy</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Chakan, Pune</span>
+                    </div>
+                </div>
+
+                <div class="project-item infra show">
+                    <img src="https://images.unsplash.com/photo-1564089827777-c7024811157c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Telecom Tower">
+                    <div class="project-overlay">
+                        <h3>5G Tower Erection</h3>
+                        <p>Telecom Infra</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Navi Mumbai</span>
+                    </div>
+                </div>
+
+                <div class="project-item painting show">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Corporate Office">
+                    <div class="project-overlay">
+                        <h3>IT Park Facade</h3>
+                        <p>Commercial Painting</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                    </div>
+                </div>
+
+                <div class="project-item industrial show">
+                    <img src="https://images.unsplash.com/photo-1513828583688-c29537deb8c2?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                        alt="Warehouse">
+                    <div class="project-overlay">
+                        <h3>Logistics Warehouse</h3>
+                        <p>Civil & Coating</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Bhiwandi, Thane</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-50">
+                <button class="btn btn-outline-dark">Load More Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-heading">Featured Case Study</h2>
+            </div>
+
+            <div class="split-layout align-center">
+                <div class="content scroll-reveal-left">
+                    <span class="sub-title">Infrastructure Milestone</span>
+                    <h3>Metro Station Entry & Civil Works</h3>
+                    <p class="mb-20">JMM Surface Coating was tasked with the civil finishing and protective coating of a
+                        major metro station entry point. The challenge involved working in high-traffic zones with
+                        strict safety protocols.</p>
+
+                    <ul class="check-list mb-30">
+                        <li><i class="fas fa-check-circle"></i> <strong>Area:</strong> 50,000 sq. ft.</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Duration:</strong> Completed in 6 Months</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Outcome:</strong> Delivered 15 days ahead of
+                            schedule.</li>
+                    </ul>
+
+                    <a href="contact.html" class="btn btn-primary">Discuss Your Project</a>
+                </div>
+                <div class="image scroll-reveal-right">
+                    <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="Metro Project" style="border-radius: 8px; box-shadow: var(--box-shadow);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <style>
+                    .footer-col .logo-img {
+                        display: inline-block;
+                        vertical-align: middle;
+                        width: 60px;
+                        height: auto;
+                        margin-right: 12px;
+                    }
+
+                    .footer-col h3 {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin: 0;
+                    }
+                </style>
+                <img src="Jmm_logo.png" alt="JMM Surface Coating Logo" class="logo-img">
+                <h3>JMM <span>Surface Coating</span></h3>
+                <p>Your trusted partner in surface coating, infrastructure development, and resource solutions.
+                    Innovating for a better tomorrow.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="paints.html">Paints Production</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html#infra">Infra Projects</a></li>
+                    <li><a href="services.html#corporate">Corporate Services</a></li>
+                    <li><a href="services.html#trading">Trading</a></li>
+                    <li><a href="services.html#resource">Manpower Supply</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Get In Touch</h4>
+                <ul class="contact-list">
+                    <li><i class="fas fa-map-marker-alt"></i> Plot No. 123, Industrial Area, Panvel, Maharashtra, India
+                    </li>
+                    <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+                    <li><i class="fas fa-envelope"></i> sales@jmmsurface.com</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p>&copy; 2025 JMM Surface Coating. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+
+    <script>    document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.filter-btn');
+            const items = document.querySelectorAll('.project-item');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    buttons.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    items.forEach(item => {
+                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.classList.remove('hide');
+                            item.classList.add('show');
+                        } else {
+                            item.classList.remove('show');
+                            item.classList.add('hide');
+                        }
+                    });
+                });
+            });
+        });</script>
+</body>
+
+</html>
