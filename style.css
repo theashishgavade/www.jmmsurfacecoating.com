@@ -2048,3 +2048,52 @@ header {
         transform: translateY(0);
     }
 }
+
+/* ===== Journey Timeline ===== */
+.timeline {
+    position: relative;
+    margin-top: 60px;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(var(--secondary-color), transparent);
+}
+
+.timeline-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 50px;
+    align-items: flex-start;
+}
+
+.timeline-dot {
+    min-width: 70px;
+    height: 70px;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--box-shadow);
+}
+
+.timeline-content {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    flex: 1;
+}
+
+.timeline-content h3 {
+    margin-bottom: 10px;
+}
