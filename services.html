@@ -49,8 +49,12 @@
                     <li><a href="about.html" class="nav-link">About Us</a></li>
                     <li><a href="paints.html" class="nav-link">Paints Production</a></li>
                     <li class="dropdown">
-                        <a href="#" class="nav-link active">Services <i class="fas fa-chevron-down"></i></a>
+                        <a href="services.html" class="nav-link active">Services <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
+                            <a href="services.html#paint-application"><i class="fas fa-paint-roller"></i> Paint
+                                Application</a>
+                            <a href="services.html#import-export"> <i class="fas fa-ship"></i> Import & Export of
+                                Minerals</a>
                             <a href="services.html#infrastructure"><i class="fas fa-city"></i> Infrastructure
                                 Projects</a>
                             <a href="services.html#corporate"><i class="fas fa-building"></i> Corporate Facility
@@ -59,10 +63,6 @@
                             <a href="services.html#manpower"><i class="fas fa-users"></i> Skilled Manpower Supply</a>
                             <a href="services.html#training"><i class="fas fa-graduation-cap"></i> Training &
                                 Development</a>
-                            <a href="services.html#import-export"> <i class="fas fa-ship"></i> Import & Export of
-                                Minerals</a>
-                            <a href="services.html#paint-application"><i class="fas fa-paint-roller"></i> Paint
-                                Application</a>
                             <a href="services.html#turnkey-coating"><i class="fas fa-industry"></i> Turnkey Coating
                                 Solutions</a>
                             <a href="services.html#quality-monitoring"><i class="fas fa-clipboard-check"></i> Quality
@@ -111,13 +111,13 @@
             <h3>Service Categories</h3>
 
             <ul class="sidebar-nav">
+                <li><a href="#paint-application"><i class="fas fa-paint-roller"></i> Paint Application</a></li>
+                <li> <a href="#import-export"><i class="fas fa-ship"></i> Import & Export of Minerals</a> </li>
                 <li><a href="#infra" class="active-link"><i class="fas fa-city"></i> Infrastructure Projects</a></li>
                 <li><a href="#corporate"><i class="fas fa-building"></i> Corporate Facility Services</a></li>
                 <li><a href="#trading"><i class="fas fa-handshake"></i> Trading & Consulting</a></li>
                 <li><a href="#manpower"><i class="fas fa-users"></i> Skilled Manpower Supply</a></li>
                 <li><a href="#training"><i class="fas fa-graduation-cap"></i> Training & Development</a></li>
-                <li> <a href="#import-export"><i class="fas fa-ship"></i> Import & Export of Minerals</a> </li>
-                <li><a href="#paint-application"><i class="fas fa-paint-roller"></i> Paint Application</a></li>
                 <li><a href="#turnkey-coating"><i class="fas fa-industry"></i> Turnkey Coating Solutions</a></li>
                 <li><a href="#quality-monitoring"><i class="fas fa-clipboard-check"></i> Quality Monitoring</a></li>
                 <li><a href="#consultant-coordination"><i class="fas fa-user-tie"></i> Consultant Coordination</a></li>
@@ -569,9 +569,15 @@
                 <p>Industrial, infrastructure, and commercial paint application executed by trained manpower.</p>
 
                 <div class="grid-3">
-
                     <div class="simple-box">
                         <i class="fas fa-paint-roller"></i>
+                        <h4>Decorative Paints & Coatings</h4>
+                        <p>High-quality decorative paints and protective coatings for interior and exterior surfaces.
+                        </p>
+                    </div>
+
+                    <div class="simple-box">
+                        <i class="fas fa-shield-alt"></i>
                         <h4>Industrial Coating</h4>
                         <p>Protective coatings for plants, pipelines, and structures.</p>
                     </div>
@@ -594,11 +600,6 @@
                         <p>Epoxy, PU, fire-retardant, and specialty coatings.</p>
                     </div>
 
-                    <div class="simple-box">
-                        <i class="fas fa-spray-can"></i>
-                        <h4>Spray Application</h4>
-                        <p>Airless and conventional spray painting techniques.</p>
-                    </div>
 
                     <div class="simple-box">
                         <i class="fas fa-brush"></i>
@@ -826,41 +827,7 @@
 
                 </div>
             </section>
-            <script>    document.addEventListener('DOMContentLoaded', function () {
-                    // Show only infra by default
-                    const sections = document.querySelectorAll('.service-section');
-                    sections.forEach(section => {
-                        if (section.id === 'infra') {
-                            section.style.display = 'block';
-                        } else {
-                            section.style.display = 'none';
-                        }
-                    });
 
-                    // Sidebar link click handling
-                    const links = document.querySelectorAll('.sidebar-nav a');
-                    links.forEach(link => {
-                        link.addEventListener('click', function (e) {
-                            e.preventDefault(); // stop default anchor behavior
-
-                            const targetId = this.getAttribute('href').substring(1);
-
-                            // Hide all sections
-                            sections.forEach(sec => sec.style.display = 'none');
-
-                            // Show target section
-                            const targetSection = document.getElementById(targetId);
-                            if (targetSection) targetSection.style.display = 'block';
-
-                            // Highlight active link
-                            links.forEach(l => l.classList.remove('active-link'));
-                            this.classList.add('active-link');
-
-                            // Optional: scroll to top
-                            targetSection.scrollIntoView({ behavior: 'smooth' });
-                        });
-                    });
-                });</script>
 
         </main>
     </div>

@@ -120,72 +120,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       6. SMOOTH SCROLLING (For Anchor Links)
-       ========================================= */
-    // This handles links like <a href="#infra"> and offsets them so the Sticky Header doesn't cover the title
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return; // Ignore empty links
+   SERVICES PAGE – DEFAULT & SIDEBAR CONTROL
+========================================= */
 
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                const headerOffset = 100; // Adjust based on your header height
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const sections = document.querySelectorAll('.service-section');
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
+    // DEFAULT SECTION (CHANGE HERE)
+    const defaultSectionId = 'paint-application';
 
-                // For Sidebar: Add active class to clicked link
-                const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-                if (sidebarLinks.length > 0) {
-                    sidebarLinks.forEach(link => link.classList.remove('active-link'));
-                    if (this.closest('.sidebar-nav')) {
-                        this.classList.add('active-link');
-                    }
-                }
-            }
-        });
+    // Hide all & show default
+    sections.forEach(section => {
+        section.style.display = section.id === defaultSectionId ? 'block' : 'none';
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
+    // Set default active link
+    sidebarLinks.forEach(link => {
+        link.classList.toggle(
+            'active-link',
+            link.getAttribute('href') === `#${defaultSectionId}`
+        );
+    });
 
-        const sections = document.querySelectorAll('.service-section');
-        const links = document.querySelectorAll('.sidebar-nav a');
+    // Sidebar click handling
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
 
-        // Show only infra by default
-        sections.forEach(section => {
-            section.style.display = section.id === 'infra' ? 'block' : 'none';
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (!targetSection) return;
+
+            sections.forEach(sec => sec.style.display = 'none');
+            targetSection.style.display = 'block';
+
+            sidebarLinks.forEach(l => l.classList.remove('active-link'));
+            this.classList.add('active-link');
+
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-
-        links.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-
-                if (!targetSection) return;
-
-                // Hide all sections
-                sections.forEach(sec => sec.style.display = 'none');
-
-                // Show selected section
-                targetSection.style.display = 'block';
-
-                // Active state
-                links.forEach(l => l.classList.remove('active-link'));
-                this.classList.add('active-link');
-
-                // Scroll nicely
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
     });
 
     // Mobile Sidebar Toggle
